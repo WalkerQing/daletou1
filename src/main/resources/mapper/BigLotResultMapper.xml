@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.BigLotResultMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.BigLotResult">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="num_of_periods" jdbcType="VARCHAR" property="numOfPeriods" />
+    <result column="red_balls" jdbcType="VARCHAR" property="redBalls" />
+    <result column="blue_balls" jdbcType="VARCHAR" property="blueBalls" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="open_time" jdbcType="TIMESTAMP" property="openTime" />
+  </resultMap>
+</mapper>

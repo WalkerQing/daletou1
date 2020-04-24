@@ -2,6 +2,8 @@ package com.company.project.core;
 
 import com.alibaba.fastjson.JSON;
 
+import java.util.Date;
+
 /**
  * 统一API响应结果封装
  */
@@ -9,6 +11,7 @@ public class Result<T> {
     private int code;
     private String message;
     private T data;
+    private Date date = new Date();
 
     public Result setCode(ResultCode resultCode) {
         this.code = resultCode.code();
@@ -36,6 +39,11 @@ public class Result<T> {
         this.data = data;
         return this;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
 
     @Override
     public String toString() {

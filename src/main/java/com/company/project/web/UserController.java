@@ -56,7 +56,7 @@ public class UserController {
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
         List<User> list = userService.findAll();
-        redisUtil.lSet("user",list);
+        redisUtil.set("user",list);
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
     }
@@ -64,7 +64,7 @@ public class UserController {
     @ApiOperation("获取缓存中用户列表")
     @PostMapping("/getUsers")
     public Result getUsers(){
-        List<Object> list = redisUtil.lGet("user",0,-1);
+        List<Object> list = (List<Object>) redisUtil.get("user");
         return ResultGenerator.genSuccessResult(list);
     }
 

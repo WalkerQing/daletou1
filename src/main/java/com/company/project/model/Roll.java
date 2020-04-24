@@ -1,9 +1,10 @@
 package com.company.project.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-public class Roll {
+public class Roll implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
