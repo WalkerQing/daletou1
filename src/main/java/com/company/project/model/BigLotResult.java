@@ -1,11 +1,10 @@
 package com.company.project.model;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "big_lot_result")
-public class BigLotResult implements Serializable {
+public class BigLotResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -24,6 +23,9 @@ public class BigLotResult implements Serializable {
 
     @Column(name = "open_time")
     private Date openTime;
+
+    @Column(name = "start_time")
+    private Date startTime;
 
     /**
      * @return id
@@ -109,14 +111,29 @@ public class BigLotResult implements Serializable {
         this.openTime = openTime;
     }
 
-    public BigLotResult(String numOfPeriods, String redBalls, String blueBalls, Date createTime, Date openTime) {
+    /**
+     * @return start_time
+     */
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * @param startTime
+     */
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public BigLotResult() {
+    }
+
+    public BigLotResult(String numOfPeriods, String redBalls, String blueBalls, Date createTime, Date openTime, Date startTime) {
         this.numOfPeriods = numOfPeriods;
         this.redBalls = redBalls;
         this.blueBalls = blueBalls;
         this.createTime = createTime;
         this.openTime = openTime;
-    }
-
-    public BigLotResult() {
+        this.startTime = startTime;
     }
 }

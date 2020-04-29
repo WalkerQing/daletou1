@@ -28,8 +28,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
-* Created by CodeGenerator on 2020/04/23.
-*/
+ * Created by CodeGenerator on 2020/04/23.
+ */
 @RestController
 @RequestMapping("/lottery")
 public class BigLotResultController {
@@ -82,13 +82,15 @@ public class BigLotResultController {
             JSONArray object = (JSONArray)jsonObject.get("mdata");
             JSONObject detail = (JSONObject)object.get(0);
             JSONObject lottery = (JSONObject)detail.get("lottery") ;
+            JSONObject openTime = (JSONObject)lottery.get("openTime") ;
             String number = lottery.get("number").toString();
             String redBall = number.split("-")[0].replaceAll(" ",",");
             String blueBall = number.split("-")[1].replaceAll(" ",",");
             SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date openDate = sdf.parse(lottery.get("sTime").toString());
-            BigLotResult bigLotResult = new BigLotResult(lottery.get("openTime_fmt1").toString(),
-                    redBall,blueBall,new Date(),openDate);
+            Date openDate = new Date(Long.parseLong(openTime.get("time").toString()));
+            Date startDate = sdf.parse(lottery.get("sTime").toString());
+            BigLotResult bigLotResult = new BigLotResult(lottery.get("term").toString(),
+                    redBall,blueBall,new Date(),openDate,startDate);
             bigLotResultService.save(bigLotResult);
         }catch (ClientProtocolException e) {
             e.printStackTrace();

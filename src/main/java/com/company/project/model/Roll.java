@@ -1,5 +1,7 @@
 package com.company.project.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
@@ -15,6 +17,7 @@ public class Roll implements Serializable {
     @Column(name = "blue_ball")
     private String blueBall;
 
+    @JSONField(format ="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
 

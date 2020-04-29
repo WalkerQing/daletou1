@@ -4,7 +4,7 @@ import com.company.project.core.Service;
 
 
 /**
- * Created by CodeGenerator on 2020/04/23.
+ * Created by CodeGenerator on 2020/04/28.
  */
 public interface BigLotResultService extends Service<BigLotResult> {
 

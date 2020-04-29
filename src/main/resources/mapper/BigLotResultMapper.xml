@@ -11,5 +11,6 @@
     <result column="blue_balls" jdbcType="VARCHAR" property="blueBalls" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="open_time" jdbcType="TIMESTAMP" property="openTime" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
   </resultMap>
 </mapper>

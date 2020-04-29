@@ -2,15 +2,13 @@ package com.company.project.web;
 import com.company.project.core.Result;
 import com.company.project.core.ResultGenerator;
 import com.company.project.model.Roll;
+import com.company.project.service.BigLotResultService;
 import com.company.project.service.RollService;
 import com.company.project.util.RedisUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -19,6 +17,7 @@ import java.util.*;
 * Created by CodeGenerator on 2020/04/23.
 */
 @Api
+@CrossOrigin
 @RestController
 @RequestMapping("/roll")
 public class RollController {
@@ -26,6 +25,8 @@ public class RollController {
     private RollService rollService;
     @Resource
     private RedisUtil redisUtil;
+    @Resource
+    private BigLotResultService bigLotResultService;
 
     @PostMapping("/add")
     public Result add(Roll roll) {
@@ -51,7 +52,7 @@ public class RollController {
         return ResultGenerator.genSuccessResult(roll);
     }
 
-    @PostMapping("/list")
+    @GetMapping("/list")
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
         List<Roll> list = rollService.findAll();
@@ -59,12 +60,10 @@ public class RollController {
         return ResultGenerator.genSuccessResult(pageInfo);
     }
 
-    @PostMapping("/generate")
+    @GetMapping("/generate")
     public Result generate() {
-        List<Integer> redBall = new ArrayList<>();
-        List<Integer> blueBall = new ArrayList<>();
-        List<Integer>  redBalls = new ArrayList<>();
-        List<Integer>  blueBalls = new ArrayList<>();
+        List<Integer> redBall = new ArrayList<>(),blueBall = new ArrayList<>()
+                ,redBalls = new ArrayList<>(),blueBalls = new ArrayList<>();
         Random random = new Random();
 
         setTotalKey();
